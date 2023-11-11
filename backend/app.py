@@ -12,5 +12,6 @@ def allUsers():
 def addUserToDatabase(username):
     database.append(username)
     return database
-    
-app.run()
+
+if __name__ == "__main__":
+    app.run()
