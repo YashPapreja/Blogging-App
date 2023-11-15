@@ -9,7 +9,9 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
+
     // alert(`FirstName: ${formData.firstName}, 
     //     LastName: ${formData.lastName}, 
     //     Age: ${formData.age} 
@@ -109,11 +111,9 @@ const SignUp = () => {
           required
           value={formData.rePassword} onChange={handleChange}
         />
-
         
           <input type="submit" name="submit" value="SignUp" />
         
-
       </form>
     </div>
   );
