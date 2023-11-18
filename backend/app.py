@@ -60,7 +60,8 @@ def login():
                                 'firstName': user['firstName'], 
                                 'lastName': user['lastName'], 
                                 'age': user['age'], 
-                                'gender': user['gender'] 
+                                'gender': user['gender'],
+                                'username': user['username']
                             }
                 break
         

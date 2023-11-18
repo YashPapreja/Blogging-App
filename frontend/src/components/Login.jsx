@@ -13,7 +13,6 @@ const Login = () => {
 
     let isUsernamePresent = false;
     
-    console.log(username);
     await fetch(`http://localhost:5000/user/${username}`, {
       method: "GET",
     }).then((response) => {
@@ -43,6 +42,7 @@ const Login = () => {
 
           console.log("VALIDE USER FOUND");
           console.log(data);
+          localStorage.setItem("UserProfile", JSON.stringify(data))
           navigate("/home");
         })
         .catch((error) => {
