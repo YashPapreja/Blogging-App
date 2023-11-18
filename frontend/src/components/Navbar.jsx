@@ -8,11 +8,11 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.css'
 
 function CustomNavbar() {
-    const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
+  const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
 
   return (
     <>
-      {['xxl'].map((expand) => (
+      {['xl'].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
           <Container fluid>
             <Navbar.Brand href="/home">BlogForge</Navbar.Brand>

@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-const Post = ({post}) => {
-    
+const Post = ({ post }) => {
+
   return (
-    <div class="card" style={{marginBottom: "10px"}}>
+    <div class="card" style={{ marginBottom: "10px" }}>
       <h5 class="card-header">UserName: {post['username']}   Date Posted: {post['createdAt']}</h5>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <h5 class="card-title">{post['title']}</h5>
         <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
+          {post['content']}
         </p>
-        <a href="#" class="btn btn-primary">
+        {/* <a href="#" class="btn btn-primary">
           Go somewhere
-        </a>
+        </a> */}
       </div>
     </div>
   );
