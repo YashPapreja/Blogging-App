@@ -7,13 +7,17 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.css'
 import newPost from '../new-post.png'
+import { useNavigate } from "react-router-dom";
 
 function CustomNavbar() {
+
   const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
+  const navigation = useNavigate();
 
   function handleLogout() {
     localStorage.setItem("UserProfile", JSON.stringify(null))
   }
+
   return (
     <>
       {['xl'].map((expand) => (
@@ -39,13 +43,15 @@ function CustomNavbar() {
                     title={userProfile['username']}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="/profile" onClick={() => {
+                      navigation('/profile', { state: userProfile });
+                    }}>Profile</NavDropdown.Item>
                     <NavDropdown.Item href="/newPost" style={{
                       display: "flex",
                       flexDirection: "row",
                       alignItems: "center"
                     }}>
-                      <div style={{marginRight: '15px'}}>New Post</div>
+                      <div style={{ marginRight: '15px' }}>New Post</div>
                       <img src={newPost} style={{ width: "20%" }}></img>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />

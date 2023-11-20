@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import CustomNavbar from "./Navbar";
-import Posts from "./Posts";
+import Users from "./Users";
 
-const Home = () => {
+const Bloggers = () => {
 
     const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
 
@@ -11,9 +11,9 @@ const Home = () => {
             {
                 userProfile != null ?
                     <div>
-                        <h1 style={{ color: "white", marginTop: "10px" }}>WELCOME TO BLOG-FORGE!</h1>
+                        <h1 style={{ color: "white", marginTop: "10px" }}>BLOGGERS!</h1>
                         <CustomNavbar />
-                        <Posts />
+                        <Users />
                     </div>
 
                     : <div>
@@ -24,4 +24,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Bloggers;

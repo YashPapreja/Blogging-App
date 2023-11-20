@@ -8,11 +8,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const submitThis =async (event) => {
+  const submitThis = async (event) => {
     event.preventDefault();
 
     let isUsernamePresent = false;
-    
+
     await fetch(`http://localhost:5000/user/${username}`, {
       method: "GET",
     }).then((response) => {

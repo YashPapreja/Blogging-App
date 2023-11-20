@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import myGif from "../yp.gif";
 import "../styles/signup.css";
 
 const SignUp = () => {
 
-  const [formData, setFormData] = useState({firstName: "", lastName: "", age: "", gender:"", username: "", password:"", rePassword:""});
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", age: "", gender: "", username: "", password: "", rePassword: "" });
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -19,32 +19,35 @@ const SignUp = () => {
         'Content-Type': 'application/json'
       }
     }).then((response) => {
-      if(!response.ok) throw new Error(response.status);
+      if (!response.ok) throw new Error(response.status);
       else return response.json();
     })
-    .then((data) => {
-      console.log("DATA STORED");
-      console.log(data);
-    })
-    .then(
-      navigate("/")
-    )
-    .catch((error) => {
-      console.log('error: ' + error);
-    });
+      .then((data) => {
+        console.log("DATA STORED");
+        console.log(data);
+      })
+      .then(
+        navigate("/")
+      )
+      .catch((error) => {
+        console.log('error: ' + error);
+      });
 
   };
 
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
 
   return (
-  
     <div className="signupbox">
       <img src={myGif} title="POPS CODER (Yash Papreja)" className="avatar" />
+      <a href="/" style={{ fontSize: "15px" }}>Already have an account? Login here</a>
+      <br />
+      <br />
       <h1>SignUp Here</h1>
+
       <form onSubmit={handleSubmit}>
         <p>First Name</p>
         <input
@@ -65,11 +68,11 @@ const SignUp = () => {
         />
 
         <p>Age</p>
-        <input type="text" name="age" placeholder="Enter Age" required value={formData.age} onChange={handleChange}/>
+        <input type="text" name="age" placeholder="Enter Age" required value={formData.age} onChange={handleChange} />
 
         <p>Gender</p>
         <select id="gender" name="gender" onChange={handleChange}>
-        <option value="" style={{display: "none"}} >--Please choose an option--</option>
+          <option value="" style={{ display: "none" }} >--Please choose an option--</option>
           <option value="Male" >Male</option>
           <option value="Female" >Female</option>
           <option value="Other" >Other</option>
@@ -101,9 +104,9 @@ const SignUp = () => {
           required
           value={formData.rePassword} onChange={handleChange}
         />
-        
-          <input type="submit" name="submit" value="SignUp" />
-        
+
+        <input type="submit" name="submit" value="SignUp" />
+
       </form>
     </div>
   );
