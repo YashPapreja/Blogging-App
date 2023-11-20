@@ -6,16 +6,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.css'
+import newPost from '../new-post.png'
 
 function CustomNavbar() {
   const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
 
+  function handleLogout() {
+    localStorage.setItem("UserProfile", JSON.stringify(null))
+  }
   return (
     <>
       {['xl'].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
           <Container fluid>
-            <Navbar.Brand href="/home">BlogForge</Navbar.Brand>
+            <Navbar.Brand href="/home" style={{ fontWeight: 'bold' }}>BlogForge</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -23,7 +27,7 @@ function CustomNavbar() {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} style={{ fontWeight: 'bold' }}>
                   BlogForge
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -36,11 +40,16 @@ function CustomNavbar() {
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="/newPost">
-                      New Post
+                    <NavDropdown.Item href="/newPost" style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center"
+                    }}>
+                      <div style={{marginRight: '15px'}}>New Post</div>
+                      <img src={newPost} style={{ width: "20%" }}></img>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/logout">
+                    <NavDropdown.Item href="/" onClick={handleLogout}>
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>

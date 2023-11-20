@@ -3,71 +3,72 @@ import Post from "./Post";
 
 const Posts = () => {
 
+    let options = { year: 'numeric', month: 'long', day: 'numeric' };
     const posts = [
         {
             username: "abcd",
             title: 'Title',
             content: "a message",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         },
         {
             username: "abcdee",
             title: 'Title',
 
             content: "a message 1",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdff",
             content: "a message 2",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdjjj",
             content: "a message 3",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         },
         {
             title: 'Title',
             username: "abcdee",
             content: "a message 1",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdff",
             content: "a message 2",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdjjj",
             content: "a message 3",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         },
         {
             title: 'Title',
             username: "abcdee",
             content: "a message 1",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdff",
             content: "a message 2",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }, {
             title: 'Title',
             username: "abcdjjj",
             content: "a message 3",
-            createdAt: Date(2023, 11, 1),
-            modifiedAt: Date(2023, 11, 1)
+            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
+            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
         }
 
     ];

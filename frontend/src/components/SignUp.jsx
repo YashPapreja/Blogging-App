@@ -12,16 +12,6 @@ const SignUp = () => {
 
     event.preventDefault();
 
-    // alert(`FirstName: ${formData.firstName}, 
-    //     LastName: ${formData.lastName}, 
-    //     Age: ${formData.age} 
-    //     Gender: ${formData.gender}, 
-    //     Password: ${formData.password}, 
-    //     RePassword: ${formData.rePassword}`
-    // );
-   
-    // console.log(formData)
-
     fetch('http://localhost:5000/signup', {
       method: 'POST',
       body: JSON.stringify(formData),
