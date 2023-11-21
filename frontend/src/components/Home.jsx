@@ -4,7 +4,7 @@ import Posts from "./Posts";
 
 const Home = () => {
 
-    const userProfile = JSON.parse(localStorage.getItem("UserProfile"))
+    const userProfile = JSON.parse(localStorage.getItem("UserProfile"));
 
     return (
         <div className="container">

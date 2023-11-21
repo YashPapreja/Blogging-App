@@ -5,6 +5,7 @@ import Home from './components/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bloggers from './components/Bloggers';
 import Profile from './components/Profile';
+import CreatePost from './components/CreatePost';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/bloggers" element={<Bloggers />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/newPost" element={<CreatePost />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -11,7 +11,7 @@ const Post = ({ post }) => {
       <div className="card-body">
         <h5 className="card-title"><strong>{post['title']}</strong></h5>
         <p className="card-text">
-          {post['content']}
+          {post['message']}
         </p>
         {/* <a href="#" class="btn btn-primary">
           Go somewhere

@@ -4,11 +4,13 @@ import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const submitThis = async (event) => {
+
     event.preventDefault();
 
     let isUsernamePresent = false;
@@ -40,7 +42,7 @@ const Login = () => {
             throw new Error("Wrong Password entered!");
           }
 
-          console.log("VALIDE USER FOUND");
+          console.log("VALID USER FOUND");
           console.log(data);
           localStorage.setItem("UserProfile", JSON.stringify(data))
           navigate("/home");

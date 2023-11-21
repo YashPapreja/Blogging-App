@@ -1,15 +1,17 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
 
-database = []
+userDatabase = []
+postDatabase = []
 
 @app.route("/user")
 def getUsers():
     users = []
-    for user in database:
+    for user in userDatabase:
         valideUser = {
             'firstName': user['firstName'],
             'lastName': user['lastName'],
@@ -25,7 +27,7 @@ def getUsers():
 
 @app.route("/user/<username>")
 def getUser(username):
-    for user in database:
+    for user in userDatabase:
         if (user['username'] == username):
             return jsonify(True)
 
@@ -45,7 +47,7 @@ def addUserToDatabase():
         'rePassword': request.json['rePassword']
     }
 
-    database.append(data)
+    userDatabase.append(data)
 
     return {"status": "SUCCESS"}
 
@@ -59,7 +61,7 @@ def login():
         username = request.json['username']
         password = request.json['password']
 
-        for user in database:
+        for user in userDatabase:
             if user['username'] == username and user['password'] == password:
                 valideUser = {
                     'firstName': user['firstName'],
@@ -71,6 +73,35 @@ def login():
                 break
 
         return valideUser
+
+
+@app.route("/post")
+def getPosts():
+    return jsonify(postDatabase[::-1])
+
+
+@app.route("/post", methods=["POST"])
+def createPost():
+
+    id = len(postDatabase) + 1
+    title = request.json['title']
+    username = request.json['username']
+    message = request.json['message']
+    createdAt = datetime.today().strftime('%d %b, %Y')
+    modifiedAt = datetime.today().strftime('%d %b, %Y')
+
+    post = {
+        'id': id,
+        'title': title,
+        'username': username,
+        'message': message,
+        'createdAt': createdAt,
+        'modifiedAt': modifiedAt
+    }
+
+    postDatabase.append(post)
+
+    return {"status": "SUCCESS"}
 
 
 if __name__ == "__main__":

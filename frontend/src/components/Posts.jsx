@@ -1,93 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "./Post";
 
 const Posts = () => {
 
-    let options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const posts = [
-        {
-            id: 1,
-            username: "abcd",
-            title: 'Title',
-            content: "a message",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        },
-        {
-            id: 2,
-            username: "abcdee",
-            title: 'Title',
+    const [posts, setPosts] = useState(null);
 
-            content: "a message 1",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 3,
-            title: 'Title',
-            username: "abcdff",
-            content: "a message 2",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 4,
-            title: 'Title',
-            username: "abcdjjj",
-            content: "a message 3",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        },
-        {
-            id: 5,
-            title: 'Title',
-            username: "abcdee",
-            content: "a message 1",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 6,
-            title: 'Title',
-            username: "abcdff",
-            content: "a message 2",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 7,
-            title: 'Title',
-            username: "abcdjjj",
-            content: "a message 3",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        },
-        {
-            id: 8,
-            title: 'Title',
-            username: "abcdee",
-            content: "a message 1",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 9,
-            title: 'Title',
-            username: "abcdff",
-            content: "a message 2",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }, {
-            id: 10,
-            title: 'Title',
-            username: "abcdjjj",
-            content: "a message 3",
-            createdAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options),
-            modifiedAt: new Date(2023, 11, 1).toLocaleDateString("en-US", options)
-        }
-
-    ];
+    useEffect(() => {
+        fetch('http://localhost:5000/post')
+            .then((response) => {
+                if (!response.ok) throw new Error(response.status);
+                return response.json();
+            })
+            .then(data => setPosts(data))
+            .catch(error => console.error(error));
+    }, []);
 
     return (
-        <div className="users">
-            {posts.map((post) => (
-                <Post key={post['id']} post={post} />
-            ))}
+        <div className="container">
+            {
+                posts != null ?
+                    <div className="users">
+                        {posts.map((post) => (
+                            <Post key={post['id']} post={post} />
+                        ))}
+                    </div>
+                    :
+                    <div>
+                        <h1 style={{ color: "yellow", marginTop: "10px" }}>LOADING...</h1>
+                    </div>
+            }
         </div>
     );
 };
