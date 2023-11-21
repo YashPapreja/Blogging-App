@@ -13,6 +13,7 @@ const Home = () => {
                     <div>
                         <h1 style={{ color: "white", marginTop: "10px" }}>WELCOME TO BLOG-FORGE!</h1>
                         <CustomNavbar />
+                        <div className="mb-3"></div>
                         <Posts />
                     </div>
 

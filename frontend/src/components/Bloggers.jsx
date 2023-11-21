@@ -13,6 +13,7 @@ const Bloggers = () => {
                     <div>
                         <h1 style={{ color: "white", marginTop: "10px" }}>BLOGGERS!</h1>
                         <CustomNavbar />
+                        <div className="mb-3"></div>
                         <Users />
                     </div>
 

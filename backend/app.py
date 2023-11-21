@@ -80,6 +80,17 @@ def getPosts():
     return jsonify(postDatabase[::-1])
 
 
+@app.route("/post/<username>")
+def getPost(username):
+    requiredPosts = []
+
+    for post in postDatabase:
+        if post['username'] == username:
+            requiredPosts.append(post)
+
+    return jsonify(requiredPosts[::-1])
+
+
 @app.route("/post", methods=["POST"])
 def createPost():
 
