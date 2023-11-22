@@ -8,31 +8,46 @@ const SignUp = () => {
   const [formData, setFormData] = useState({ firstName: "", lastName: "", age: "", gender: "", username: "", password: "", rePassword: "" });
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
 
     event.preventDefault();
 
-    fetch('http://localhost:5000/signup', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    let isUsernamePresent = false;
+
+    await fetch(`http://localhost:5000/user/${formData.username}`, {
+      method: "GET",
     }).then((response) => {
       if (!response.ok) throw new Error(response.status);
-      else return response.json();
-    })
-      .then((data) => {
-        console.log("DATA STORED");
-        console.log(data);
-      })
-      .then(
-        navigate("/")
-      )
-      .catch((error) => {
-        console.log('error: ' + error);
-      });
+      return response.json();
+    }).then((data) => {
+      isUsernamePresent = data;
+    });
 
+    if (!isUsernamePresent) {
+      fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        if (!response.ok) throw new Error(response.status);
+        else return response.json();
+      })
+        .then((data) => {
+          console.log("DATA STORED");
+          console.log(data);
+        })
+        .then(
+          navigate("/")
+        )
+        .catch((error) => {
+          console.log('error: ' + error);
+        });
+    }
+    else {
+      alert("Username already exists! Please enter different username.")
+    }
   };
 
   const handleChange = (event) => {
@@ -49,6 +64,7 @@ const SignUp = () => {
       <h1>SignUp Here</h1>
 
       <form onSubmit={handleSubmit}>
+        
         <p>First Name</p>
         <input
           type="text"
@@ -104,6 +120,14 @@ const SignUp = () => {
           required
           value={formData.rePassword} onChange={handleChange}
         />
+        {
+          formData.password == formData.rePassword ?
+            formData.password != "" ?
+              <div style={{ color: "green", marginBottom: "10px" }}>Password matches.</div>
+              : ""
+            :
+            <div style={{ color: "red", marginBottom: "10px" }}>Password doesn't match. Please verify.</div>
+        }
 
         <input type="submit" name="submit" value="SignUp" />
 
